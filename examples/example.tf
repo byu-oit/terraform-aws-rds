@@ -3,7 +3,7 @@ provider "aws" {
   region  = "us-west-2"
 }
 
-module "" {
+module "<module_name>" {
   source = "git@github.com:byu-oit/terraform-aws-<module_name>?ref=v1.0.0"
   #source = "../" # for local testing during module development
 }
