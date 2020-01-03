@@ -17,10 +17,13 @@ module "<module_name>" {
 }
 ```
 
+## Requirements
+* Terraform version 0.12.16 or greater
+
 ## Inputs
 | Name | Description | Default |
 | --- | --- | --- |
-| | |
+| | | |
 
 ## Outputs
 | Name | Description |
