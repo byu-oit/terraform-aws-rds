@@ -28,6 +28,6 @@ module "<module_name>" {
 | | | | |
 
 ## Outputs
-| Name | Description |
-| --- | --- |
-| | |
+| Name | Type | Description |
+| ---  | ---  | --- |
+| | | |
