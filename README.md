@@ -23,9 +23,9 @@ module "<module_name>" {
 * Terraform version 0.12.16 or greater
 
 ## Inputs
-| Name | Description | Default |
-| --- | --- | --- |
-| | | |
+| Name | Type  | Description | Default |
+| --- | --- | --- | --- |
+| | | | |
 
 ## Outputs
 | Name | Description |
