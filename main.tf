@@ -15,5 +15,6 @@ resource "aws_db_instance" "database" {
   allocated_storage         = var.db_storage
   skip_final_snapshot       = var.skip_final_snapshot
   final_snapshot_identifier = var.final_snapshot_name != "" ? var.final_snapshot_name : "${var.instance_name}-final-snapshot"
+  db_subnet_group_name      = var.db_subnet_group
 }
 

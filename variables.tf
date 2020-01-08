@@ -30,6 +30,12 @@ variable "db_name" {
   default     = ""
 }
 
+variable "db_subnet_group" {
+  type        = string
+  description = "The name of the subnet group to be used for the database."
+  default     = "default"
+}
+
 variable "skip_final_snapshot" {
   type        = bool
   description = "If true, skips final snapshot on destroy."
