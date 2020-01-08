@@ -31,7 +31,8 @@ module "rds" {
 | `instance_class` | string | The instance class the RDS instance will use | db.t2.micro |
 | `db_storage` | number | The amount of storage in GB to be allocated to the database | 20 |
 | `skip_final_snapshot` | boolean | If set to true, no final snapshot of the database will be made when its deleted. | false |
-| `final_snapshot_name` | string | The name of the final snapshot when the database is deleted. Not necessary if `skip_final_snapshot` is set to true. | `<db_name>`-final-snapshot | 
+| `final_snapshot_name` | string | The name of the final snapshot when the database is deleted. Not necessary if `skip_final_snapshot` is set to true. | `<db_name>`-final-snapshot |
+| `db_subnet_group` | string | The name of the subnet group the database should use. | default |
 
 ## Outputs
 | Name | Type | Description |
