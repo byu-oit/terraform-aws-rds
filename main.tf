@@ -5,16 +5,12 @@ terraform {
   }
 }
 
-module "terraform-aws-rds" {
-  source = "git@github.com:byu-oit/terraform-aws-rds"
+resource "aws_db_instance" "database" {
+  username       = var.username
+  password       = var.password
+  identifier     = var.instance_name
+  engine         = var.db_engine
+  instance_class = var.instance_type
 
-  resource "aws_db_instance" "database" {
-    username       = var.username
-    password       = var.password
-    identifier     = var.instance_name
-    engine         = var.db_engine
-    instance_class = var.instance_type
-
-  }
 }
 
