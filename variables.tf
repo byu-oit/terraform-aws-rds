@@ -11,6 +11,7 @@ variable "db_password" {
 variable "db_storage" {
   type        = number
   description = "The amount of storage to be allocated for the database"
+  default     = 20
 }
 
 variable "instance_name" {
