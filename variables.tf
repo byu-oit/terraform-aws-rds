@@ -8,6 +8,11 @@ variable "db_password" {
   description = "Password for the master username"
 }
 
+variable "db_storage" {
+  type        = number
+  description = "The amount of storage to be allocated for the database"
+}
+
 variable "instance_name" {
   type        = string
   description = "Name for the DB Instance"
