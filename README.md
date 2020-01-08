@@ -1,21 +1,19 @@
 ![Latest GitHub Release](https://img.shields.io/github/v/release/byu-oit/terraform-aws-<module_name>?sort=semver)
 
-# Terraform Module Template
-GitHub template to quick start creating terraform templates
-
-## To Use Template
-1. Click the "Use this template" button 
-2. Name your terraform module repo as `terraform-aws-<module_name>` (if creating non-AWS module change `aws` to the cloud provider)
-3. Rename this README's title to the title you named your repo in #2
-4. Update the shield badge URL to match the module's repo at the top of this README
-5. Update this README to match the module's title (in the usage section)
-6. Update `example/example.tf` to match the module's title
-7. Remove this section from the README
+# Terraform AWS RDS
+This terraform deploys an RDS instance.
  
 ## Usage
 ```hcl
-module "<module_name>" {
-  source = "git@github.com:byu-oit/terraform-aws-<module_name>?ref=v1.0.0"
+module "rds" {
+  source = "git@github.com:byu-oit/terraform-aws-rds?ref=v1.0.0"
+
+  db_username    = "username"
+  db_password    = "password"
+  db_engine      = "mysql"
+  db_name        = "some_db"
+  instance_name  = "rds_name"
+  instance_class = "db.t2.micro"
 }
 ```
 
@@ -25,7 +23,12 @@ module "<module_name>" {
 ## Inputs
 | Name | Type  | Description | Default |
 | --- | --- | --- | --- |
-| | | | |
+| db_username | string | **Required** The master username to be used for the RDS instance | |
+| db_password | string | **Required** The master password to be used for the RDS instnace | |
+| db_engine | string | **Required** The database engine the RDS instance will use | |
+| db_name | string | The name of the database that RDS will create | default |
+| instance_name | string | **Required** The actual name of the RDS instance | |
+| instance_class | string | The instance class the RDS instance will use | db.t2.micro |
 
 ## Outputs
 | Name | Type | Description |

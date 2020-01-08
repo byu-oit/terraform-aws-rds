@@ -6,5 +6,10 @@ provider "aws" {
 module "rds" {
   source = "git@github.com:byu-oit/terraform-aws-rds?ref=v1.0.0"
 
-
+  db_username    = "user"
+  db_password    = "password"
+  db_name        = "some_db"
+  instance_name  = "rds_name"
+  db_engine      = "mysql"
+  instance_class = "db.t2.micro"
 }
