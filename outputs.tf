@@ -1,3 +1,3 @@
-output "database_endpoint" {
-    value = aws_db_instance.database
+output "rds_database" {
+  value = aws_db_instance.database
 }
