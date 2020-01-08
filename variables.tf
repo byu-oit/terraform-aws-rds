@@ -31,7 +31,7 @@ variable "db_name" {
 }
 
 variable "skip_final_snapshot" {
-  type        = boolean
+  type        = bool
   description = "If true, skips final snapshot on destroy."
   default     = false
 }
