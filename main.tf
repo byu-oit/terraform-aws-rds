@@ -6,10 +6,11 @@ terraform {
 }
 
 resource "aws_db_instance" "database" {
-  username       = var.db_username
-  password       = var.db_password
-  identifier     = var.db_identifier
-  engine         = var.db_engine
-  instance_class = var.db_instance_class
+  username       = var.rds_username
+  password       = var.rds_password
+  identifier     = var.rds_instance_name
+  engine         = var.rds_engine
+  instance_class = var.rds_instance_class
+  name           = var.rds_db_name
 }
 
