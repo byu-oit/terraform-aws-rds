@@ -30,6 +30,18 @@ variable "db_name" {
   default     = ""
 }
 
+variable "skip_final_snapshot" {
+  type        = boolean
+  description = "If true, skips final snapshot on destroy."
+  default     = false
+}
+
+variable "final_snapshot_name" {
+  type        = string
+  description = "Identifier for the final snapshot created on destroy"
+  default     = ! var.skip_final_snapshot ? "${var.instance_name}-final-snapshot" : ""
+}
+
 variable "instance_class" {
   type        = string
   description = "The instance type to use for the database"
