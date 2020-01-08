@@ -6,7 +6,7 @@ terraform {
 }
 
 module "terraform-aws-rds" {
-  source = "https://gitlab.com/masterqwerty/terraform-aws-rds"
+  source = "git@github.com:byu-oit/terraform-aws-rds"
 
   resource "aws_db_instance" "database" {
     username       = var.username
