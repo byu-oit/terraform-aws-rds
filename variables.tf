@@ -18,7 +18,7 @@ variable "rds_engine" {
   description = "The engine to be used for the database"
 }
 
-variabe "rds_db_name" {
+variable "rds_db_name" {
   type        = string
   description = "The name for a database to be created in the RDS instance."
   default     = "default"
