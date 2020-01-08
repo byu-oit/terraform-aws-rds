@@ -39,7 +39,7 @@ variable "skip_final_snapshot" {
 variable "final_snapshot_name" {
   type        = string
   description = "Identifier for the final snapshot created on destroy"
-  default     = ! var.skip_final_snapshot ? "${var.instance_name}-final-snapshot" : ""
+  default     = ""
 }
 
 variable "instance_class" {
