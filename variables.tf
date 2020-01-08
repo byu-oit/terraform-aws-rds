@@ -1,24 +1,31 @@
-variable "db_username" {
+variable "rds_username" {
   type        = string
   description = "Master username for the database instance."
 }
 
-variable "db_password" {
+variable "rds_password" {
   type        = string
   description = "Password for the master username"
 }
 
-variable "db_identifier" {
+variable "rds_instance_name" {
   type        = string
   description = "Name for the DB Instance"
 }
 
-variable "db_engine" {
+variable "rds_engine" {
   type        = string
   description = "The engine to be used for the database"
 }
 
-variable "db_instance_class" {
+variabe "rds_db_name" {
+  type        = string
+  description = "The name for a database to be created in the RDS instance."
+  default     = "default"
+}
+
+variable "rds_instance_class" {
   type        = string
   description = "The instance type to use for the database"
+  default     = "db.t2.micro"
 }
