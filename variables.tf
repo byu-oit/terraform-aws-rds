@@ -27,7 +27,7 @@ variable "db_engine" {
 variable "db_name" {
   type        = string
   description = "The name for a database to be created in the RDS instance."
-  default     = "default"
+  default     = ""
 }
 
 variable "instance_class" {
