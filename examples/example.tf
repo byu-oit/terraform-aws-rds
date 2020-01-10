@@ -3,13 +3,21 @@ provider "aws" {
   region  = "us-west-2"
 }
 
-module "rds" {
-  source = "git@github.com:byu-oit/terraform-aws-rds?ref=v1.0.0"
+module "acs" {
+  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.2.0"
+  env = "dev"
+}
 
-  db_username    = "user"
-  db_password    = "password"
-  db_name        = "some_db"
-  instance_name  = "rds_name"
-  db_engine      = "mysql"
-  instance_class = "db.t2.micro"
+module "rds" {
+  source = "git@github.com:byu-oit/terraform-aws-rds?ref=v0.1.0"
+//  source = "../"
+  identifier = "example"
+  engine = "mysql"
+  engine_version = "8.0"
+
+  db_name = "example"
+  subnet_ids = module.acs.data_subnet_ids
+  vpc_id = module.acs.vpc.id
+
+  deletion_protection = false
 }

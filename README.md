@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "git@github.com:byu-oit/terraform-aws-rds?ref=v1.0.0"
+  source = "git@github.com:byu-oit/terraform-aws-rds?ref=v0.1.0"
 
   db_username    = "username"
   db_password    = "password"
@@ -23,18 +23,25 @@ module "rds" {
 ## Inputs
 | Name | Type  | Description | Default |
 | --- | --- | --- | --- |
-| `db_username` | string | **Required** The master username to be used for the RDS instance | |
-| `db_password` | string | **Required** The master password to be used for the RDS instnace | |
-| `db_engine` | string | **Required** The database engine the RDS instance will use | |
-| `db_name` | string | The name of the database that RDS will create | |
-| `instance_name` | string | **Required** The actual name of the RDS instance | |
+| `identifier` | string | **Required** Identifier for the RDS instance | |
 | `instance_class` | string | The instance class the RDS instance will use | db.t2.micro |
-| `db_storage` | number | The amount of storage in GB to be allocated to the database | 20 |
+| `engine` | string | **Required** The database engine the RDS instance will use | |
+| `engine_version` | string | **Required** The engine version to use | |
+| `db_name` | string | The name of the database that RDS will create | |
+| `master_username` | string | **Required** The master username to be used for the RDS instance | |
+| `master_password` | string | **Required** The master password to be used for the RDS instnace | |
+| `allocated_storaged` | number | The amount of storage to be allocated for the database | 20 |
+| `storage_type` | string | Storage type for the database [standard, gp2] | gp2  |
+| `storage_encrypted` | bool | Specifies whether the DB instance is encrypted | true |
+| `vpc_id` | string | **Required** VPC ID to put the RDS instance on | |
+| `subnet_ids` | list(string) | **Required** A list of VPC subnet IDs to put the RDS instance on | |
+| `deletion_protection` | bool | If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true | true |
 | `skip_final_snapshot` | boolean | If set to true, no final snapshot of the database will be made when its deleted. | false |
-| `final_snapshot_name` | string | The name of the final snapshot when the database is deleted. Not necessary if `skip_final_snapshot` is set to true. | `<db_name>`-final-snapshot |
-| `db_subnet_group` | string | The name of the subnet group the database should use. | default |
 
 ## Outputs
 | Name | Type | Description |
 | ---  | ---  | --- |
-| | | |
+| `instance` | [object]() | The RDS Instance object |
+| `security_group` | [object]() | The security group for the RDS Instance |
+| `master_username_parameter` | [object]() | SSM parameter object of the RDS database master username |
+| `master_password_parameter` | [object]() | SSM parameter object of the RDS database password | |
