@@ -1,4 +1,4 @@
-![Latest GitHub Release](https://img.shields.io/github/v/release/byu-oit/terraform-aws-<module_name>?sort=semver)
+![Latest GitHub Release](https://img.shields.io/github/v/release/byu-oit/terraform-aws-rds?sort=semver)
 
 # Terraform AWS RDS
 This terraform deploys an RDS instance.
@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "git@github.com:byu-oit/terraform-aws-rds?ref=v0.1.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v0.1.1"
 
   db_username    = "username"
   db_password    = "password"
