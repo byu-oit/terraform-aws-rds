@@ -11,5 +11,6 @@ output "master_username_parameter" {
 }
 
 output "master_password_parameter" {
-  value = aws_ssm_parameter.master_password
+  value     = aws_ssm_parameter.master_password
+  sensitive = true
 }

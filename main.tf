@@ -6,54 +6,56 @@ terraform {
 }
 
 resource "random_password" "default" {
-  count = var.master_password == null ? 1 : 0
-  length = 32
+  count   = var.master_password == null ? 1 : 0
+  length  = 32
   special = false
   keepers = {
     recreate_password = false
   }
 }
 resource "aws_ssm_parameter" "master_username" {
-  name = "/${var.identifier}/master_username"
+  name        = "/${var.identifier}/master_username"
   description = "${var.identifier} Database master username"
-  type = "String"
-  value = var.master_username != null ? var.master_username : "${var.identifier}_root"
+  type        = "String"
+  value       = var.master_username != null ? var.master_username : "${var.identifier}_root"
+  tags        = var.tags
 }
 resource "aws_ssm_parameter" "master_password" {
-  name = "/${var.identifier}/master_password"
+  name        = "/${var.identifier}/master_password"
   description = "${var.identifier} Database master password"
-  type = "SecureString"
-  value = var.master_password != null ? var.master_password : random_password.default[0].result
-}
-
-resource "aws_db_subnet_group" "subnet_group" {
-  name = "${var.identifier}_subnet_group"
-  subnet_ids = var.subnet_ids
+  type        = "SecureString"
+  value       = var.master_password != null ? var.master_password : random_password.default[0].result
+  tags        = var.tags
 }
 
 resource "aws_security_group" "db_security_group" {
-  name = "${var.identifier}-db_sg"
+  name        = "${var.identifier}-db_sg"
   description = "Security group for ${var.identifier} RDS instance"
-  vpc_id = var.vpc_id
+  vpc_id      = var.vpc_id
+  tags        = var.tags
 }
 
 resource "aws_db_instance" "database" {
-  identifier                = var.identifier
-  instance_class            = var.instance_class
-  engine                    = var.engine
-  engine_version            = var.engine_version
+  identifier     = var.identifier
+  instance_class = var.instance_class
+  engine         = var.engine
+  engine_version = var.engine_version
 
-  name                      = var.db_name
-  username                  = var.master_username != null ? var.master_username : aws_ssm_parameter.master_username.value
-  password                  = var.master_password != null ? var.master_password : aws_ssm_parameter.master_password.value
-  allocated_storage         = var.allocated_storage
-  storage_type              = var.storage_type
-  storage_encrypted         = var.storage_encrypted
+  name                            = var.db_name
+  username                        = var.master_username != null ? var.master_username : aws_ssm_parameter.master_username.value
+  password                        = var.master_password != null ? var.master_password : aws_ssm_parameter.master_password.value
+  allocated_storage               = var.allocated_storage
+  storage_type                    = var.storage_type
+  storage_encrypted               = var.storage_encrypted
+  deletion_protection             = var.deletion_protection
+  enabled_cloudwatch_logs_exports = var.cloudwatch_logs_exports
+
+  db_subnet_group_name   = var.subnet_group_name
+  vpc_security_group_ids = [aws_security_group.db_security_group.id]
 
   skip_final_snapshot       = var.skip_final_snapshot
   final_snapshot_identifier = "${var.identifier}-final-snapshot"
-  db_subnet_group_name      = aws_db_subnet_group.subnet_group.name
-  vpc_security_group_ids    = [aws_security_group.db_security_group.id]
+  copy_tags_to_snapshot     = true
 
-  deletion_protection       = var.deletion_protection
+  tags = var.tags
 }
