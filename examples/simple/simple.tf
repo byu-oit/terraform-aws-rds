@@ -20,5 +20,5 @@ module "rds" {
   subnet_group_name = module.acs.db_subnet_group_name
   vpc_id            = module.acs.vpc.id
 
-  deletion_protection = false
+  deletion_protection = true
 }
