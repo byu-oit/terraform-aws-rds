@@ -8,7 +8,6 @@ This terraform deploys an RDS instance.
 module "rds" {
   source = "github.com/byu-oit/terraform-aws-rds?ref=v0.2.0"
 
-  source                  = "../.."
   identifier              = "example"
   engine                  = "mysql"
   engine_version          = "8.0"
