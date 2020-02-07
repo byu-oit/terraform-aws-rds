@@ -8,9 +8,12 @@ This terraform deploys an RDS instance.
 module "rds" {
   source = "github.com/byu-oit/terraform-aws-rds?ref=v0.2.0"
 
-  identifier     = "example"
-  engine         = "mysql"
-  engine_version = "8.0"
+  source                  = "../.."
+  identifier              = "example"
+  engine                  = "mysql"
+  engine_version          = "8.0"
+  security_group_ids      = [module.acs.rds_security_group.id]
+  cloudwatch_logs_exports = ["error", "general"]
 
   db_name           = "example"
   subnet_ids        = module.acs.data_subnet_ids
@@ -42,6 +45,7 @@ module "rds" {
 | `skip_final_snapshot` | boolean | If set to true, no final snapshot of the database will be made when its deleted. | false |
 | `cloudwatch_logs_exports` | list(string) | List of log types to enable for exporting to CloudWatch logs. Each engine has different valid values | ['audit', 'error', 'general', 'slowquery'] |
 | `tags` | map(string) | A map of AWS Tags to attach to each resource created | {} |
+| `security_group_ids` | list(string) | A list of security group ids of security groups to attach to the RDS instance. This is in addition to the security group created in the module. | [] |
 
 #### master_username/master_password
 You can provide your own username and password, but please **DO NOT COMMIT** your password to source code.
