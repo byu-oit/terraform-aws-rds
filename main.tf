@@ -51,7 +51,7 @@ resource "aws_db_instance" "database" {
   enabled_cloudwatch_logs_exports = var.cloudwatch_logs_exports
 
   db_subnet_group_name   = var.subnet_group_name
-  vpc_security_group_ids = [aws_security_group.db_security_group.id]
+  vpc_security_group_ids = concat(var.security_group_ids, [aws_security_group.db_security_group.id])
 
   skip_final_snapshot       = var.skip_final_snapshot
   final_snapshot_identifier = "${var.identifier}-final-snapshot"

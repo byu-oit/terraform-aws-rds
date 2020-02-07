@@ -79,3 +79,9 @@ variable "tags" {
   description = "A map of AWS Tags to attach to each resource created"
   default     = {}
 }
+
+variable "security_group_ids" {
+  type        = list(string)
+  description = "List of additional security group ids to add to the RDS instance"
+  default     = []
+}
