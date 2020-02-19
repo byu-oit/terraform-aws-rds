@@ -49,6 +49,9 @@ resource "aws_db_instance" "database" {
   storage_encrypted               = var.storage_encrypted
   deletion_protection             = var.deletion_protection
   enabled_cloudwatch_logs_exports = var.cloudwatch_logs_exports
+  backup_retention_period         = var.backup_retention_period
+  backup_window                   = var.backup_window
+  maintenance_window              = var.maintenance_window
 
   db_subnet_group_name   = var.subnet_group_name
   vpc_security_group_ids = [aws_security_group.db_security_group.id]
