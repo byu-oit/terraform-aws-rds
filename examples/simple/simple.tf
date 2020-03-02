@@ -9,13 +9,12 @@ module "acs" {
 }
 
 module "rds" {
-  //  source = "github.com/byu-oit/terraform-aws-rds?ref=v0.2.1"
-  source                  = "../.."
-  identifier              = "example"
-  engine                  = "mysql"
-  engine_version          = "8.0"
+  //  source = "github.com/byu-oit/terraform-aws-rds?ref=v0.3.0"
+  source         = "../.."
+  identifier     = "example"
+  engine         = "mysql"
+  engine_version = "8.0"
   security_group_ids      = [module.acs.rds_security_group.id]
-  cloudwatch_logs_exports = ["error", "general"]
 
   db_name           = "example"
   subnet_ids        = module.acs.data_subnet_ids

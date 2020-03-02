@@ -73,7 +73,21 @@ variable "cloudwatch_logs_exports" {
   description = "List of log types to enable for exporting to CloudWatch logs. Each engine has different valid values. Defaults to mysql ['audit', 'error', 'general', 'slowquery']"
   default     = ["audit", "error", "general", "slowquery"]
 }
-
+variable "backup_retention_period" {
+  type        = number
+  description = "The days to retain backups for. Must be between 0 and 35. Must be greater than 0 if the database is used as a source for a Read Replica."
+  default     = 7
+}
+variable "backup_window" {
+  type        = string
+  description = "The daily time range (in UTC) during which automated backups are created if they are enabled. Example: \"09:46-10:16\". Must not overlap with maintenance_window."
+  default     = "07:01-07:31" #midnight or 1am depending on daylight savings
+}
+variable "maintenance_window" {
+  type        = string
+  description = "The window to perform maintenance in. Syntax: \"ddd:hh24:mi-ddd:hh24:mi\". Eg: \"Mon:00:00-Mon:03:00\"."
+  default     = null
+}
 variable "tags" {
   type        = map(string)
   description = "A map of AWS Tags to attach to each resource created"
