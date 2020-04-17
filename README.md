@@ -40,7 +40,7 @@ module "rds" {
 | `subnet_group_name` | string | Database subnet group name (can be retrieved from acs-info) | |
 | `deletion_protection` | bool | If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true | true |
 | `skip_final_snapshot` | boolean | If set to true, no final snapshot of the database will be made when its deleted. | false |
-| `cloudwatch_logs_exports` | list(string) | List of log types to enable for exporting to CloudWatch logs. Each engine has different valid values | ['audit', 'error', 'general', 'slowquery'] |
+| `cloudwatch_logs_exports` | list(string) | List of log types to enable for exporting to CloudWatch logs. Each engine has different [valid values](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html). | ['audit', 'error', 'general', 'slowquery'] |
 | `backup_retention_period` | number | The days to retain backups for. Must be between 0 and 35. Must be greater than 0 if the database is used as a source for a Read Replica. | 7 |
 | `backup_window` | string | The daily time range (in UTC) during which automated backups are created if they are enabled. Syntax: "hh24:mi-hh24:mi". Eg: "09:46-10:16". Must not overlap with maintenance_window. | 07:01-07:31 (this is either midnight or 1am Mountain Time, depending on daylight savings) |
 | `maintenance_window` | string | The window to perform maintenance in. Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00". | null |
