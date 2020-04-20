@@ -54,7 +54,7 @@ resource "aws_db_instance" "database" {
   maintenance_window              = var.maintenance_window
 
   db_subnet_group_name   = var.subnet_group_name
-  vpc_security_group_ids = [aws_security_group.db_security_group.id]
+  vpc_security_group_ids = concat(var.security_group_ids, [aws_security_group.db_security_group.id])
 
   skip_final_snapshot       = var.skip_final_snapshot
   final_snapshot_identifier = "${var.identifier}-final-snapshot"

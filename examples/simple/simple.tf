@@ -14,6 +14,7 @@ module "rds" {
   identifier     = "example"
   engine         = "mysql"
   engine_version = "8.0"
+  security_group_ids      = [module.acs.rds_security_group.id]
 
   db_name           = "example"
   subnet_ids        = module.acs.data_subnet_ids

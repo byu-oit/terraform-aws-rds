@@ -8,9 +8,11 @@ This terraform deploys an RDS instance.
 module "rds" {
   source = "github.com/byu-oit/terraform-aws-rds?ref=v0.3.0"
 
-  identifier     = "example"
-  engine         = "mysql"
-  engine_version = "8.0"
+  identifier              = "example"
+  engine                  = "mysql"
+  engine_version          = "8.0"
+  security_group_ids      = [module.acs.rds_security_group.id]
+  cloudwatch_logs_exports = ["error", "general"]
 
   db_name           = "example"
   subnet_ids        = module.acs.data_subnet_ids
@@ -45,6 +47,7 @@ module "rds" {
 | `backup_window` | string | The daily time range (in UTC) during which automated backups are created if they are enabled. Syntax: "hh24:mi-hh24:mi". Eg: "09:46-10:16". Must not overlap with maintenance_window. | 07:01-07:31 (this is either midnight or 1am Mountain Time, depending on daylight savings) |
 | `maintenance_window` | string | The window to perform maintenance in. Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00". | null |
 | `tags` | map(string) | A map of AWS Tags to attach to each resource created | {} |
+| `security_group_ids` | list(string) | A list of security group ids of security groups to attach to the RDS instance. This is in addition to the security group created in the module. | [] |
 
 #### master_username/master_password
 You can provide your own username and password, but please **DO NOT COMMIT** your password to source code.
