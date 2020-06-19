@@ -4,17 +4,16 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v1.2.2"
-  env    = "dev"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v2.1.0"
 }
 
 module "rds" {
   //  source = "github.com/byu-oit/terraform-aws-rds?ref=v0.3.0"
-  source         = "../.."
-  identifier     = "example"
-  engine         = "mysql"
-  engine_version = "8.0"
-  security_group_ids      = [module.acs.rds_security_group.id]
+  source                  = "../.."
+  identifier              = "example"
+  engine                  = "mysql"
+  engine_version          = "8.0"
+  cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
   db_name           = "example"
   subnet_ids        = module.acs.data_subnet_ids
