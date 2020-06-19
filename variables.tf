@@ -71,7 +71,6 @@ variable "skip_final_snapshot" {
 variable "cloudwatch_logs_exports" {
   type        = list(string)
   description = "List of log types to enable for exporting to CloudWatch logs. Each engine has different valid values. Defaults to mysql ['audit', 'error', 'general', 'slowquery']"
-  default     = ["audit", "error", "general", "slowquery"]
 }
 variable "backup_retention_period" {
   type        = number
