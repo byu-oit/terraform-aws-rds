@@ -14,3 +14,7 @@ output "master_password_parameter" {
   value     = aws_ssm_parameter.master_password
   sensitive = true
 }
+
+output "parameter_group" {
+  value = aws_db_parameter_group.parameter_group
+}

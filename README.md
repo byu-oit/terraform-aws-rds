@@ -6,11 +6,12 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.0.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.1.0"
 
   identifier              = "example"
   engine                  = "mysql"
   engine_version          = "8.0"
+  family                  = "mysql8.0"
   cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
   db_name           = "example"
@@ -30,6 +31,7 @@ module "rds" {
 | `instance_class`          | string       | The instance class the RDS instance will use                                                                                                                                                                                                              | db.t2.micro                                                                               |
 | `engine`                  | string       | The database engine the RDS instance will use                                                                                                                                                                                                             |                                                                                           |
 | `engine_version`          | string       | The engine version to use                                                                                                                                                                                                                                 |                                                                                           |
+| `family`                  | string       | The database family for the parameter group                                                                                                                                                                                                               |                                                                                           |
 | `db_name`                 | string       | The name of the database that RDS will create                                                                                                                                                                                                             |                                                                                           |
 | `master_username`         | string       | The master username to be used for the RDS instance. If not provided, a random one will be generated (see [below](#master_usernamemaster_password)).                                                                                                      | null                                                                                      |
 | `master_password`         | string       | The master password to be used for the RDS instnace. If not provided, a random one will be generated (see [below](#master_usernamemaster_password)).                                                                                                      | null                                                                                      |
@@ -61,4 +63,5 @@ In both cases the username and passwords will be stored in SSM Parameter store a
 | `instance`                  | [object](https://www.terraform.io/docs/providers/aws/r/db_instance.html#attributes-reference)    | The RDS Instance object                                  |
 | `security_group`            | [object](https://www.terraform.io/docs/providers/aws/r/security_group.html#attributes-reference) | The security group for the RDS Instance                  |
 | `master_username_parameter` | [object](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html#attributes-reference)  | SSM parameter object of the RDS database master username |
-| `master_password_parameter` | [object](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html#attributes-reference)  | SSM parameter object of the RDS database password        |  |
+| `master_password_parameter` | [object](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html#attributes-reference)  | SSM parameter object of the RDS database password        |
+| `parameter_group`           | [object](https://www.terraform.io/docs/providers/aws/r/aws_db_parameter_group.html#attributes-reference) | The RDS Parameter group assigned to the RDS instance |

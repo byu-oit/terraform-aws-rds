@@ -16,6 +16,7 @@ module "rds" {
   identifier              = "example"
   engine                  = "mysql"
   engine_version          = "8.0"
+  family                  = "mysql8.0"
   cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
   db_name           = "example"

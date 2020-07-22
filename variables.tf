@@ -15,6 +15,10 @@ variable "engine_version" {
   type        = string
   description = "The engine version to use."
 }
+variable "family" {
+  type        = string
+  description = "engine family to assign to the parameter group"
+}
 
 variable "db_name" {
   type        = string
