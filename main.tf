@@ -65,7 +65,7 @@ resource "aws_db_instance" "database" {
 }
 
 resource "aws_db_parameter_group" "parameter_group" {
-  name   = var.db_name
+  name   = var.identifier
   family = var.family
 
   tags = var.tags
