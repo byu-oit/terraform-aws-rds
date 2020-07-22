@@ -68,5 +68,13 @@ resource "aws_db_parameter_group" "parameter_group" {
   name   = var.identifier
   family = var.family
 
+  dynamic "parameter" {
+    for_each = var.parameter_group_parameters
+    content {
+      name = parameter.key
+      value = parameter.value
+    }
+  }
+
   tags = var.tags
 }

@@ -17,7 +17,7 @@ variable "engine_version" {
 }
 variable "family" {
   type        = string
-  description = "engine family to assign to the parameter group"
+  description = "The family of the DB parameter group."
 }
 
 variable "db_name" {
@@ -91,14 +91,19 @@ variable "maintenance_window" {
   description = "The window to perform maintenance in. Syntax: \"ddd:hh24:mi-ddd:hh24:mi\". Eg: \"Mon:00:00-Mon:03:00\"."
   default     = null
 }
-variable "tags" {
-  type        = map(string)
-  description = "A map of AWS Tags to attach to each resource created"
-  default     = {}
-}
-
 variable "security_group_ids" {
   type        = list(string)
   description = "List of additional security group ids to add to the RDS instance"
   default     = []
+}
+variable "parameter_group_parameters" {
+  type        = map(string)
+  description = "Map of parameters to include in the database parameter group"
+  default     = {}
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "A map of AWS Tags to attach to each resource created"
+  default     = {}
 }
