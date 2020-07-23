@@ -6,11 +6,12 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.0.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.1.0"
 
   identifier              = "example"
   engine                  = "mysql"
   engine_version          = "8.0"
+  family                  = "mysql8.0"
   cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
   db_name           = "example"
@@ -30,6 +31,7 @@ module "rds" {
 | `instance_class`          | string       | The instance class the RDS instance will use                                                                                                                                                                                                              | db.t2.micro                                                                               |
 | `engine`                  | string       | The database engine the RDS instance will use                                                                                                                                                                                                             |                                                                                           |
 | `engine_version`          | string       | The engine version to use                                                                                                                                                                                                                                 |                                                                                           |
+| `family`                  | string       | The family of the DB parameter group                                                                                                                                                                                                           |                                                                                           |
 | `db_name`                 | string       | The name of the database that RDS will create                                                                                                                                                                                                             |                                                                                           |
 | `master_username`         | string       | The master username to be used for the RDS instance. If not provided, a random one will be generated (see [below](#master_usernamemaster_password)).                                                                                                      | null                                                                                      |
 | `master_password`         | string       | The master password to be used for the RDS instnace. If not provided, a random one will be generated (see [below](#master_usernamemaster_password)).                                                                                                      | null                                                                                      |
@@ -45,8 +47,9 @@ module "rds" {
 | `backup_retention_period` | number       | The days to retain backups for. Must be between 0 and 35. Must be greater than 0 if the database is used as a source for a Read Replica.                                                                                                                  | 7                                                                                         |
 | `backup_window`           | string       | The daily time range (in UTC) during which automated backups are created if they are enabled. Syntax: "hh24:mi-hh24:mi". Eg: "09:46-10:16". Must not overlap with maintenance_window.                                                                     | 07:01-07:31 (this is either midnight or 1am Mountain Time, depending on daylight savings) |
 | `maintenance_window`      | string       | The window to perform maintenance in. Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".                                                                                                                                                       | null                                                                                      |
-| `tags`                    | map(string)  | A map of AWS Tags to attach to each resource created                                                                                                                                                                                                      | {}                                                                                        |
 | `security_group_ids`      | list(string) | A list of security group ids of security groups to attach to the RDS instance. This is in addition to the security group created in the module.                                                                                                           | []                                                                                        |
+| `parameter_group_parameters` | map(string) | Map of parameters to include in the database parameter group | {} |
+| `tags`                    | map(string)  | A map of AWS Tags to attach to each resource created                                                                                                                                                                                                      | {}                                                                                        |
 
 #### master_username/master_password
 You can provide your own username and password, but please **DO NOT COMMIT** your password to source code.
@@ -61,4 +64,5 @@ In both cases the username and passwords will be stored in SSM Parameter store a
 | `instance`                  | [object](https://www.terraform.io/docs/providers/aws/r/db_instance.html#attributes-reference)    | The RDS Instance object                                  |
 | `security_group`            | [object](https://www.terraform.io/docs/providers/aws/r/security_group.html#attributes-reference) | The security group for the RDS Instance                  |
 | `master_username_parameter` | [object](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html#attributes-reference)  | SSM parameter object of the RDS database master username |
-| `master_password_parameter` | [object](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html#attributes-reference)  | SSM parameter object of the RDS database password        |  |
+| `master_password_parameter` | [object](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html#attributes-reference)  | SSM parameter object of the RDS database password        |
+| `parameter_group`           | [object](https://www.terraform.io/docs/providers/aws/r/aws_db_parameter_group.html#attributes-reference) | The RDS Parameter group assigned to the RDS instance |
