@@ -9,7 +9,7 @@ module "acs" {
 
 module "rds" {
   source = "github.com/byu-oit/terraform-aws-rds?ref=v1.1.0"
-//  source                  = "../.."
+  //  source                  = "../.."
   identifier              = "example"
   engine                  = "mysql"
   engine_version          = "8.0"
@@ -22,7 +22,7 @@ module "rds" {
   vpc_id            = module.acs.vpc.id
 
   parameter_group_parameters = {
-    autocommit = "1"
+    autocommit            = "1"
     innodb_file_per_table = "1"
   }
 
