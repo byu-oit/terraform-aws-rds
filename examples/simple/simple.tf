@@ -4,11 +4,11 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v2.1.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v2.2.0"
 }
 
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.1.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.2.0"
   //  source                  = "../.."
   identifier              = "example"
   engine                  = "mysql"

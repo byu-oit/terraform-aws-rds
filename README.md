@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.1.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.2.0"
 
   identifier              = "example"
   engine                  = "mysql"
@@ -66,3 +66,9 @@ In both cases the username and passwords will be stored in SSM Parameter store a
 | `master_username_parameter` | [object](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html#attributes-reference)  | SSM parameter object of the RDS database master username |
 | `master_password_parameter` | [object](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html#attributes-reference)  | SSM parameter object of the RDS database password        |
 | `parameter_group`           | [object](https://www.terraform.io/docs/providers/aws/r/aws_db_parameter_group.html#attributes-reference) | The RDS Parameter group assigned to the RDS instance |
+
+## Developing
+
+### Release new version
+
+To release a new version, update the examples in the `examples` folder, the example in this README, and the number in the version file. Pushing to `master` will automatically create a new release and tag in GitHub.
