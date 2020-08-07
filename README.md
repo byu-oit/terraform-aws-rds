@@ -6,13 +6,13 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v1.1.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.0.0"
 
   identifier              = "example"
   engine                  = "mysql"
   engine_version          = "8.0"
   family                  = "mysql8.0"
-  cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
+  cloudwatch_logs_exports = ["error", "general", "slowquery"]
 
   db_name           = "example"
   subnet_ids        = module.acs.data_subnet_ids
