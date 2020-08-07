@@ -12,7 +12,7 @@ module "rds" {
   engine                  = "mysql"
   engine_version          = "8.0"
   family                  = "mysql8.0"
-  cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
+  cloudwatch_logs_exports = ["error", "general", "slowquery"]
 
   db_name           = "example"
   subnet_ids        = module.acs.data_subnet_ids
