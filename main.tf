@@ -62,6 +62,10 @@ resource "aws_db_instance" "database" {
   copy_tags_to_snapshot     = true
 
   tags = var.tags
+
+  lifecycle {
+    ignore_changes = [engine_version]
+  }
 }
 
 resource "aws_db_parameter_group" "parameter_group" {
