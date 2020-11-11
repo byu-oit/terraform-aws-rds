@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.0.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.1.0"
 
   identifier              = "example"
   engine                  = "mysql"
@@ -44,6 +44,7 @@ module "rds" {
 | `deletion_protection`     | bool         | If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true                                                                                                                                  | true                                                                                      |
 | `skip_final_snapshot`     | boolean      | If set to true, no final snapshot of the database will be made when its deleted.                                                                                                                                                                          | false                                                                                     |
 | `cloudwatch_logs_exports` | list(string) | List of log types to enable for exporting to CloudWatch logs. Each engine has different [valid values](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html). We strongly recommend adding at least the `audit` log where possible. |                                                                                           |
+| `log_retention_in_days`   | number       | CloudWatch log groups retention in days                                                                                                                                                                                                                   | 120                                                                                       |
 | `backup_retention_period` | number       | The days to retain backups for. Must be between 0 and 35. Must be greater than 0 if the database is used as a source for a Read Replica.                                                                                                                  | 7                                                                                         |
 | `backup_window`           | string       | The daily time range (in UTC) during which automated backups are created if they are enabled. Syntax: "hh24:mi-hh24:mi". Eg: "09:46-10:16". Must not overlap with maintenance_window.                                                                     | 07:01-07:31 (this is either midnight or 1am Mountain Time, depending on daylight savings) |
 | `maintenance_window`      | string       | The window to perform maintenance in. Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".                                                                                                                                                       | null                                                                                      |
