@@ -76,6 +76,11 @@ variable "cloudwatch_logs_exports" {
   type        = list(string)
   description = "List of log types to enable for exporting to CloudWatch logs. Each engine has different valid values. We strongly recommend adding the 'audit' log where possible."
 }
+variable "log_retention_in_days" {
+  type        = number
+  description = "CloudWatch log groups retention in days. Defaults to 120."
+  default     = 120
+}
 variable "backup_retention_period" {
   type        = number
   description = "The days to retain backups for. Must be between 0 and 35. Must be greater than 0 if the database is used as a source for a Read Replica."

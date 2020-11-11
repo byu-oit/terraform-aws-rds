@@ -62,6 +62,10 @@ resource "aws_db_instance" "database" {
   copy_tags_to_snapshot     = true
 
   tags = var.tags
+
+  depends_on = [
+    aws_cloudwatch_log_group.db_logs
+  ]
 }
 
 resource "aws_db_parameter_group" "parameter_group" {
@@ -77,4 +81,11 @@ resource "aws_db_parameter_group" "parameter_group" {
   }
 
   tags = var.tags
+}
+
+resource "aws_cloudwatch_log_group" "db_logs" {
+  for_each          = var.cloudwatch_logs_exports
+  name              = "/aws/rds/instance/${var.identifier}/${each.value}"
+  retention_in_days = var.log_retention_in_days
+  tags              = var.tags
 }
