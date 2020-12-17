@@ -5,6 +5,10 @@ terraform {
   }
 }
 
+locals {
+  ssm_prefix = var.ssm_prefix != null ? var.ssm_prefix : "/${var.identifier}"
+}
+
 resource "random_password" "default" {
   count   = var.master_password == null ? 1 : 0
   length  = 32
@@ -14,14 +18,14 @@ resource "random_password" "default" {
   }
 }
 resource "aws_ssm_parameter" "master_username" {
-  name        = "/${var.identifier}/master_username"
+  name        = "${local.ssm_prefix}/master_username"
   description = "${var.identifier} Database master username"
   type        = "String"
   value       = var.master_username != null ? var.master_username : "${var.identifier}_root"
   tags        = var.tags
 }
 resource "aws_ssm_parameter" "master_password" {
-  name        = "/${var.identifier}/master_password"
+  name        = "/${local.ssm_prefix}/master_password"
   description = "${var.identifier} Database master password"
   type        = "SecureString"
   value       = var.master_password != null ? var.master_password : random_password.default[0].result
