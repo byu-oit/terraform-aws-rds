@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.1.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.2.0"
 
   identifier              = "example"
   engine                  = "mysql"
@@ -33,7 +33,7 @@ module "rds" {
 | `engine_version`          | string       | The engine version to use                                                                                                                                                                                                                                 |                                                                                           |
 | `family`                  | string       | The family of the DB parameter group                                                                                                                                                                                                                      |                                                                                           |
 | `db_name`                 | string       | The name of the database that RDS will create                                                                                                                                                                                                             |                                                                                           |
-| `ssm_prefix`              | string       | The SSM Parameter Store Prefix to use when creating the master username and password                                                                                                                                                                      |                                                                                           |
+| `ssm_prefix`              | string       | The SSM Parameter Store Prefix to use when creating the master username and password.                                                                                                                                                                     | identifier                                                                                |
 | `master_username`         | string       | The master username to be used for the RDS instance. If not provided, a random one will be generated (see [below](#master_usernamemaster_password)).                                                                                                      | null                                                                                      |
 | `master_password`         | string       | The master password to be used for the RDS instnace. If not provided, a random one will be generated (see [below](#master_usernamemaster_password)).                                                                                                      | null                                                                                      |
 | `allocated_storaged`      | number       | The amount of storage to be allocated for the database                                                                                                                                                                                                    | 32                                                                                        |
