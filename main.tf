@@ -25,7 +25,7 @@ resource "aws_ssm_parameter" "master_username" {
   tags        = var.tags
 }
 resource "aws_ssm_parameter" "master_password" {
-  name        = "/${local.ssm_prefix}/master_password"
+  name        = "${local.ssm_prefix}/master_password"
   description = "${var.identifier} Database master password"
   type        = "SecureString"
   value       = var.master_password != null ? var.master_password : random_password.default[0].result
