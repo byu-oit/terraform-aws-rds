@@ -25,6 +25,11 @@ variable "db_name" {
   description = "The name for a database to be created in the RDS instance."
   default     = null
 }
+variable "ssm_prefix" {
+  type        = string
+  description = "The SSM Parameter Store Prefix to use when creating the master username and password."
+  default     = null
+}
 variable "master_username" {
   type        = string
   description = "Master username for the database instance."
