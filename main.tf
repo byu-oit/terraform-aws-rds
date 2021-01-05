@@ -17,11 +17,19 @@ resource "random_password" "default" {
     recreate_password = false
   }
 }
+resource "random_string" "default" {
+  count   = var.master_username == null ? 1 : 0
+  length  = 16
+  special = false
+  keepers = {
+    recreate_username = false
+  }
+}
 resource "aws_ssm_parameter" "master_username" {
   name        = "${local.ssm_prefix}/master_username"
   description = "${var.identifier} Database master username"
   type        = "String"
-  value       = var.master_username != null ? var.master_username : "${var.identifier}_root"
+  value       = var.master_username != null ? var.master_username : random_string.default[0].result
   tags        = var.tags
 }
 resource "aws_ssm_parameter" "master_password" {
