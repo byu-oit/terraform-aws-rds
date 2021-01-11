@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.2.1"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.3.0"
 
   identifier              = "example"
   engine                  = "mysql"
@@ -36,7 +36,8 @@ module "rds" {
 | `ssm_prefix`              | string       | The SSM Parameter Store Prefix to use when creating the master username and password.                                                                                                                                                                     | identifier                                                                                |
 | `master_username`         | string       | The master username to be used for the RDS instance. If not provided, a random one will be generated (see [below](#master_usernamemaster_password)).                                                                                                      | null                                                                                      |
 | `master_password`         | string       | The master password to be used for the RDS instnace. If not provided, a random one will be generated (see [below](#master_usernamemaster_password)).                                                                                                      | null                                                                                      |
-| `allocated_storaged`      | number       | The amount of storage to be allocated for the database                                                                                                                                                                                                    | 32                                                                                        |
+| `allocated_storage`       | number       | The amount of storage to be allocated for the database. If `max_allocated_storage` is configured, this argument represents the initial storage allocation and differences from the configuration will be ignored automatically when Storage Autoscaling occurs. | 32                                                                                        |
+| `max_allocated_storage`   | number       | The max amount of storage for the database. Used for storage autoscaling.                                                                                                                                                                                 | null
 | `storage_type`            | string       | Storage type for the database [standard, gp2]                                                                                                                                                                                                             | gp2                                                                                       |
 | `storage_encrypted`       | bool         | Specifies whether the DB instance is encrypted                                                                                                                                                                                                            | true                                                                                      |
 | `vpc_id`                  | string       | VPC ID to put the RDS instance on                                                                                                                                                                                                                         |                                                                                           |
