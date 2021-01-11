@@ -45,6 +45,11 @@ variable "allocated_storage" {
   description = "The amount of storage to be allocated for the database"
   default     = 32
 }
+variable "max_allocated_storage" {
+  type = number
+  description = "The max amount of storage for the database. Used for storage autoscaling."
+  default = null
+}
 variable "storage_type" {
   type        = string
   description = "Storage type for the database. 'standard' (magnetic) or 'gp2' (general purpose SSD). Defaults to gp2"

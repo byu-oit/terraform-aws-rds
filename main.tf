@@ -58,6 +58,7 @@ resource "aws_db_instance" "database" {
   username                        = var.master_username != null ? var.master_username : aws_ssm_parameter.master_username.value
   password                        = var.master_password != null ? var.master_password : aws_ssm_parameter.master_password.value
   allocated_storage               = var.allocated_storage
+  max_allocated_storage           = var.max_allocated_storage
   storage_type                    = var.storage_type
   storage_encrypted               = var.storage_encrypted
   deletion_protection             = var.deletion_protection
