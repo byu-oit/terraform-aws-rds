@@ -46,9 +46,9 @@ variable "allocated_storage" {
   default     = 32
 }
 variable "max_allocated_storage" {
-  type = number
+  type        = number
   description = "The max amount of storage for the database. Used for storage autoscaling."
-  default = null
+  default     = null
 }
 variable "storage_type" {
   type        = string
