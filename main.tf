@@ -21,6 +21,7 @@ resource "random_string" "default" {
   count   = var.master_username == null ? 1 : 0
   length  = 16
   special = false
+  number  = false
   keepers = {
     recreate_username = false
   }
