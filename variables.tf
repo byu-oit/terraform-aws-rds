@@ -5,7 +5,7 @@ variable "identifier" {
 variable "instance_class" {
   type        = string
   description = "The instance type to use for the database"
-  default     = "db.t2.small"
+  default     = "db.t3.small"
 }
 variable "engine" {
   type        = string
