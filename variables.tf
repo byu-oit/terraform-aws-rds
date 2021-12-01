@@ -106,6 +106,11 @@ variable "maintenance_window" {
   description = "The window to perform maintenance in. Syntax: \"ddd:hh24:mi-ddd:hh24:mi\". Eg: \"Mon:00:00-Mon:03:00\"."
   default     = null
 }
+variable "multi_az" {
+  type        = bool
+  description = "If the RDS instance is multi AZ enabled."
+  default     = false
+}
 variable "security_group_ids" {
   type        = list(string)
   description = "List of additional security group ids to add to the RDS instance"

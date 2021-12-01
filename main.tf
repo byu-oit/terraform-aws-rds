@@ -67,6 +67,7 @@ resource "aws_db_instance" "database" {
   backup_retention_period         = var.backup_retention_period
   backup_window                   = var.backup_window
   maintenance_window              = var.maintenance_window
+  multi_az                        = var.multi_az
 
   db_subnet_group_name   = var.subnet_group_name
   vpc_security_group_ids = concat(var.security_group_ids, [aws_security_group.db_security_group.id])

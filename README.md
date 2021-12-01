@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.3.2"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.4.0"
 
   identifier              = "example"
   engine                  = "mysql"
@@ -50,6 +50,7 @@ module "rds" {
 | `backup_retention_period` | number       | The days to retain backups for. Must be between 0 and 35. Must be greater than 0 if the database is used as a source for a Read Replica.                                                                                                                  | 7                                                                                         |
 | `backup_window`           | string       | The daily time range (in UTC) during which automated backups are created if they are enabled. Syntax: "hh24:mi-hh24:mi". Eg: "09:46-10:16". Must not overlap with maintenance_window.                                                                     | 07:01-07:31 (this is either midnight or 1am Mountain Time, depending on daylight savings) |
 | `maintenance_window`      | string       | The window to perform maintenance in. Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".                                                                                                                                                       | null                                                                                      |
+| `multi_az`                | bool         | If the RDS instance is multi AZ enabled.                                                                                                                                                                                                                  | false                                                                                     |
 | `security_group_ids`      | list(string) | A list of security group ids of security groups to attach to the RDS instance. This is in addition to the security group created in the module.                                                                                                           | []                                                                                        |
 | `parameter_group_parameters` | map(string) | Map of parameters to include in the database parameter group | {} |
 | `tags`                    | map(string)  | A map of AWS Tags to attach to each resource created                                                                                                                                                                                                      | {}                                                                                        |
