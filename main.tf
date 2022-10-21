@@ -81,6 +81,10 @@ resource "aws_db_instance" "database" {
   depends_on = [
     aws_cloudwatch_log_group.db_logs
   ]
+
+  lifecycle {
+    ignore_changes = [engine_version]
+  }
 }
 
 resource "aws_db_parameter_group" "parameter_group" {
