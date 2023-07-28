@@ -76,6 +76,9 @@ resource "aws_db_instance" "database" {
   final_snapshot_identifier = "${var.identifier}-final-snapshot"
   copy_tags_to_snapshot     = true
 
+  performance_insights_enabled = var.performance_insights != null ? true : false # If the object exists then turn on
+  performance_insights_retention_period = var.performance_insights != null ? var.performance_insights.retention_period_days : null
+
   tags = var.tags
 
   depends_on = [
