@@ -57,7 +57,7 @@ module "rds" {
 | `tags`                       | map(string)                     | A map of AWS Tags to attach to each resource created                                                                                                                                                                                                                                                               | {}                                                                                        |
 
 #### performance_insights
-* **`retention_period_days`** - The number of days to retain. Setting to null will  
+* **`retention_period_days`** - The number of days to retain. Setting to null will default the resource default of 7 days
 
 #### master_username/master_password
 You can provide your own username and password, but please **DO NOT COMMIT** your password to source code.
