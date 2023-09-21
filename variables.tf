@@ -127,3 +127,10 @@ variable "tags" {
   description = "A map of AWS Tags to attach to each resource created"
   default     = {}
 }
+variable "performance_insights" {
+  type = object({
+    retention_period_days = number
+  })
+  description = "Performance Insights Configuration"
+  default     = null
+}
