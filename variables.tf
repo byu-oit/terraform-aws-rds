@@ -111,6 +111,11 @@ variable "multi_az" {
   description = "If the RDS instance is multi AZ enabled."
   default     = false
 }
+variable "iam_database_authentication_enabled" {
+  type        = bool
+  description = "Allow AWS IAM authentication for the database"
+  default     = false
+}
 variable "security_group_ids" {
   type        = list(string)
   description = "List of additional security group ids to add to the RDS instance"
