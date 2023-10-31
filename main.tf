@@ -55,19 +55,20 @@ resource "aws_db_instance" "database" {
   engine_version       = var.engine_version
   parameter_group_name = aws_db_parameter_group.parameter_group.name
 
-  name                            = var.db_name
-  username                        = var.master_username != null ? var.master_username : aws_ssm_parameter.master_username.value
-  password                        = var.master_password != null ? var.master_password : aws_ssm_parameter.master_password.value
-  allocated_storage               = var.allocated_storage
-  max_allocated_storage           = var.max_allocated_storage
-  storage_type                    = var.storage_type
-  storage_encrypted               = var.storage_encrypted
-  deletion_protection             = var.deletion_protection
-  enabled_cloudwatch_logs_exports = var.cloudwatch_logs_exports
-  backup_retention_period         = var.backup_retention_period
-  backup_window                   = var.backup_window
-  maintenance_window              = var.maintenance_window
-  multi_az                        = var.multi_az
+  name                                = var.db_name
+  username                            = var.master_username != null ? var.master_username : aws_ssm_parameter.master_username.value
+  password                            = var.master_password != null ? var.master_password : aws_ssm_parameter.master_password.value
+  allocated_storage                   = var.allocated_storage
+  max_allocated_storage               = var.max_allocated_storage
+  storage_type                        = var.storage_type
+  storage_encrypted                   = var.storage_encrypted
+  deletion_protection                 = var.deletion_protection
+  enabled_cloudwatch_logs_exports     = var.cloudwatch_logs_exports
+  backup_retention_period             = var.backup_retention_period
+  backup_window                       = var.backup_window
+  maintenance_window                  = var.maintenance_window
+  multi_az                            = var.multi_az
+  iam_database_authentication_enabled = var.iam_database_authentication_enabled
 
   db_subnet_group_name   = var.subnet_group_name
   vpc_security_group_ids = concat(var.security_group_ids, [aws_security_group.db_security_group.id])
