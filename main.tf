@@ -8,7 +8,7 @@ terraform {
 locals {
   ssm_prefix                        = var.ssm_prefix != null ? var.ssm_prefix : "/${var.identifier}"
   mysql_default_group_parameters    = var.engine == "mysql" ? { require_secure_transport = "1" /* Forces SSL */ } : {}
-  postgres_default_group_parameters = var.engine == "postgres" ? { rds.force_ssl = "1" /* Forces SSL */ } : {}
+  postgres_default_group_parameters = var.engine == "postgres" ? { "rds.force_ssl" = "1" /* Forces SSL */ } : {}
   parameter_group_parameters        = merge(local.mysql_default_group_parameters, local.postgres_default_group_parameters, var.parameter_group_parameters)
 }
 
