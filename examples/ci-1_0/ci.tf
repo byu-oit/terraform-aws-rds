@@ -1,5 +1,5 @@
 terraform {
-  required_version = "0.13.2"
+  required_version = "1.0.0"
 }
 
 provider "aws" {
@@ -8,7 +8,7 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.1.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v4.0.0"
 }
 
 module "rds" {
