@@ -1,5 +1,5 @@
 provider "aws" {
-  version = "~> 3.0"
+  version = "~> 4.0"
   region  = "us-west-2"
 }
 
@@ -8,7 +8,7 @@ module "acs" {
 }
 
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.6.1"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.7.2"
   //  source                  = "../.."
   identifier              = "example"
   engine                  = "mysql"
