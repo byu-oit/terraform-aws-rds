@@ -3,12 +3,12 @@ terraform {
 }
 
 provider "aws" {
-  version = "~> 3.0"
+  version = "~> 4.0"
   region  = "us-west-2"
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.0.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v4.0.0"
 }
 
 module "rds" {
