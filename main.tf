@@ -1,7 +1,7 @@
 terraform {
   required_version = ">= 0.12.16"
   required_providers {
-    aws = ">= 3.0"
+    aws = ">= 4.0"
   }
 }
 
@@ -24,7 +24,7 @@ resource "random_string" "default" {
   count   = var.master_username == null ? 1 : 0
   length  = 16
   special = false
-  number  = false
+  numeric = false
   keepers = {
     recreate_username = false
   }
@@ -58,7 +58,7 @@ resource "aws_db_instance" "database" {
   engine_version       = var.engine_version
   parameter_group_name = aws_db_parameter_group.parameter_group.name
 
-  name                                = var.db_name
+  db_name                             = var.db_name
   username                            = var.master_username != null ? var.master_username : aws_ssm_parameter.master_username.value
   password                            = var.master_password != null ? var.master_password : aws_ssm_parameter.master_password.value
   allocated_storage                   = var.allocated_storage
