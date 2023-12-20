@@ -1,14 +1,22 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 4.0"
+    }
+  }
+}
+
 provider "aws" {
-  version = "~> 3.0"
-  region  = "us-west-2"
+  region = "us-west-2"
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.0.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v4.0.0"
 }
 
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v2.6.1"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v3.0.0"
   //  source                  = "../.."
   identifier              = "example"
   engine                  = "mysql"

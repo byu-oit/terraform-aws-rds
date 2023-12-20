@@ -1,5 +1,6 @@
 output "instance" {
-  value = aws_db_instance.database
+  value     = aws_db_instance.database
+  sensitive = true
 }
 
 output "security_group" {
@@ -7,7 +8,8 @@ output "security_group" {
 }
 
 output "master_username_parameter" {
-  value = aws_ssm_parameter.master_username
+  value     = aws_ssm_parameter.master_username
+  sensitive = true
 }
 
 output "master_password_parameter" {
