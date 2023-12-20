@@ -1,10 +1,15 @@
 terraform {
   required_version = "1.2.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 }
 
 provider "aws" {
-  version = "~> 4.0"
-  region  = "us-west-2"
+  region = "us-west-2"
 }
 
 module "acs" {
@@ -28,7 +33,8 @@ module "rds" {
 }
 
 output "instance" {
-  value = module.rds.instance
+  value     = module.rds.instance
+  sensitive = true
 }
 
 output "security_group" {
@@ -36,9 +42,11 @@ output "security_group" {
 }
 
 output "master_username_parameter" {
-  value = module.rds.master_username_parameter
+  value     = module.rds.master_username_parameter
+  sensitive = true
 }
 
 output "master_password_parameter" {
-  value = module.rds.master_password_parameter
+  value     = module.rds.master_password_parameter
+  sensitive = true
 }

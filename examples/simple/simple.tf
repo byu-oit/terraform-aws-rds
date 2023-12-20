@@ -1,6 +1,14 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 4.0"
+    }
+  }
+}
+
 provider "aws" {
-  version = "~> 4.0"
-  region  = "us-west-2"
+  region = "us-west-2"
 }
 
 module "acs" {
