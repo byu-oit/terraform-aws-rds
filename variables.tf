@@ -139,3 +139,9 @@ variable "performance_insights" {
   description = "Performance Insights Configuration"
   default     = null
 }
+
+variable "ca_cert_identifier" {
+  type        = string
+  description = "The identifier of the CA certificate for the DB instance."
+  default     = null
+}

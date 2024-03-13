@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v3.0.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v3.1.0"
 
   identifier              = "example"
   engine                  = "mysql"
@@ -57,6 +57,7 @@ module "rds" {
 | `parameter_group_parameters`          | map(string)                     | Map of parameters to include in the database parameter group                                                                                                                                                                                                                                                       | {}                                                                                        |
 | `performance_insights`                | [object](#performance_insights) | If the object is not null performance insights is turned on and configured with the parameter(s) in the object                                                                                                                                                                                                     | null                                                                                      |
 | `tags`                                | map(string)                     | A map of AWS Tags to attach to each resource created                                                                                                                                                                                                                                                               | {}                                                                                        |
+| `ca_cert_identifier`                            | string                            | The identifier of the CA certificate for the DB instance.                                                                                                                                                                                                                                                                           | null                                                                                     |
 
 #### performance_insights
 * **`retention_period_days`** - The number of days to retain. Setting to null will default the resource default of 7 days

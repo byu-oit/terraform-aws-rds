@@ -75,6 +75,7 @@ resource "aws_db_instance" "database" {
   maintenance_window                  = var.maintenance_window
   multi_az                            = var.multi_az
   iam_database_authentication_enabled = var.iam_database_authentication_enabled
+  ca_cert_identifier                  = var.ca_cert_identifier
 
   db_subnet_group_name   = var.subnet_group_name
   vpc_security_group_ids = concat(var.security_group_ids, [aws_security_group.db_security_group.id])

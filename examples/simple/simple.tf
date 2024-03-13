@@ -16,7 +16,7 @@ module "acs" {
 }
 
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v3.0.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v3.1.0"
   //  source                  = "../.."
   identifier              = "example"
   engine                  = "mysql"
