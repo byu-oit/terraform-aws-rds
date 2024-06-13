@@ -22,7 +22,7 @@ variable "family" {
 variable "db_security_group_name" {
   type        = string
   description = "Optional name of the security group to be created for the RDS instance. Defaults to {var.identifier}-db_sg"
-  default     = "db_sg"
+  default     = null
 }
 variable "db_name" {
   type        = string
