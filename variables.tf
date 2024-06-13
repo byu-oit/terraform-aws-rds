@@ -24,6 +24,11 @@ variable "db_security_group_name" {
   description = "Optional name of the security group to be created for the RDS instance. Defaults to {var.identifier}-db_sg"
   default     = null
 }
+variable "db_security_group_description" {
+  type        = string
+  description = "Optional description of the security group to be created for the RDS instance."
+  default     = null
+}
 variable "db_name" {
   type        = string
   description = "The name for a database to be created in the RDS instance."
