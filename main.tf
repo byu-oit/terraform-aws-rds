@@ -48,7 +48,7 @@ resource "aws_ssm_parameter" "master_password" {
 }
 
 resource "aws_security_group" "db_security_group" {
-  name        = "${var.identifier}-db_sg"
+  name        = var.db_security_group_name ? var.db_security_group_name : "${var.identifier}-db_sg"
   description = "Security group for ${var.identifier} RDS instance"
   vpc_id      = var.vpc_id
   tags        = var.tags
