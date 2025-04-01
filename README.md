@@ -6,7 +6,7 @@ This terraform deploys an RDS instance.
 ## Usage
 ```hcl
 module "rds" {
-  source = "github.com/byu-oit/terraform-aws-rds?ref=v3.2.0"
+  source = "github.com/byu-oit/terraform-aws-rds?ref=v3.3.0"
 
   identifier              = "example"
   engine                  = "mysql"
