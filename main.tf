@@ -100,8 +100,9 @@ resource "aws_db_instance" "database" {
 }
 
 resource "aws_db_parameter_group" "parameter_group" {
-  name   = var.identifier
-  family = var.family
+  /** Using create_before_destroy requires that the new parameter group is created with a different name than the existing one. */
+  name_prefix = var.identifier
+  family      = var.family
 
   dynamic "parameter" {
     for_each = local.parameter_group_parameters
@@ -109,6 +110,15 @@ resource "aws_db_parameter_group" "parameter_group" {
       name  = parameter.key
       value = parameter.value
     }
+  }
+
+  lifecycle {
+    /**
+     * Necessary for modifications that force re-creation of an existing, in-use parameter group. This includes
+     * common situations like changing the group name or bumping the family version during a major version upgrade.
+     * See the [AWS Terraform Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_parameter_group#create_before_destroy-lifecycle-configuration)
+     */
+    create_before_destroy = true
   }
 
   tags = var.tags
