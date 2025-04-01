@@ -19,6 +19,11 @@ variable "family" {
   type        = string
   description = "The family of the DB parameter group."
 }
+variable "allow_major_version_upgrade" {
+  type        = bool
+  description = "AWS requires a manual allow_major_version_upgrade = true flag if you’re doing a major version bump."
+  default     = false
+}
 variable "db_security_group_name" {
   type        = string
   description = "Optional name of the security group to be created for the RDS instance. Defaults to {var.identifier}-db_sg"
