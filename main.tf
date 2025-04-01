@@ -55,12 +55,11 @@ resource "aws_security_group" "db_security_group" {
 }
 
 resource "aws_db_instance" "database" {
-  identifier                  = var.identifier
-  instance_class              = var.instance_class
-  engine                      = var.engine
-  engine_version              = var.engine_version
-  allow_major_version_upgrade = var.allow_major_version_upgrade
-  parameter_group_name        = aws_db_parameter_group.parameter_group.name
+  identifier           = var.identifier
+  instance_class       = var.instance_class
+  engine               = var.engine
+  engine_version       = var.engine_version
+  parameter_group_name = aws_db_parameter_group.parameter_group.name
 
   db_name                             = var.db_name
   username                            = var.master_username != null ? var.master_username : aws_ssm_parameter.master_username.value
@@ -87,6 +86,9 @@ resource "aws_db_instance" "database" {
 
   performance_insights_enabled          = var.performance_insights != null # If the object exists then turn on
   performance_insights_retention_period = var.performance_insights != null ? var.performance_insights.retention_period_days : null
+
+  allow_major_version_upgrade = var.allow_major_version_upgrade
+  apply_immediately           = var.apply_immediately
 
   tags = var.tags
 
