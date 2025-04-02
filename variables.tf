@@ -19,11 +19,6 @@ variable "family" {
   type        = string
   description = "The family of the DB parameter group."
 }
-variable "allow_major_version_upgrade" {
-  type        = bool
-  description = "AWS requires a manual allow_major_version_upgrade = true flag if you’re doing a major version bump."
-  default     = false
-}
 variable "db_security_group_name" {
   type        = string
   description = "Optional name of the security group to be created for the RDS instance. Defaults to {var.identifier}-db_sg"
@@ -104,6 +99,16 @@ variable "log_retention_in_days" {
   type        = number
   description = "CloudWatch log groups retention in days. Defaults to 120."
   default     = 120
+}
+variable "allow_major_version_upgrade" {
+  type        = bool
+  description = "AWS requires a manual allow_major_version_upgrade = true flag if you’re doing a major version bump."
+  default     = false
+}
+variable "apply_immediately" {
+  type        = bool
+  description = "Specifies whether any database modifications are applied immediately, or during the next maintenance window."
+  default     = false
 }
 variable "backup_retention_period" {
   type        = number
